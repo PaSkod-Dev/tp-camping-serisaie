@@ -1,4 +1,4 @@
-# **TP C – Camping « La Cerisaie »
+# TP C – Camping « La Cerisaie »
 
 Gestion des Types d’Emplacement**
 
