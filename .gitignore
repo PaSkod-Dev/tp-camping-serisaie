@@ -1,0 +1,25 @@
+# Fichiers objets
+*.o
+*.obj
+
+# Exécutables
+*.exe
+*.out
+*.elf
+cerisaie_types_emplacement
+
+# Dossiers de build
+/build/
+/bin/
+/dist/
+
+# Fichiers temporaires d'éditeur
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
