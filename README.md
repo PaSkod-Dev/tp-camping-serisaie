@@ -41,5 +41,5 @@ Makefile                 # Compilation automatisée du projet
 
 ## **Auteurs**
 
-* **EDOH BEDI Komi Godwin** – Développement, implémentation et structuration du code
-* **SEWONOU Pascal** – Conception fonctionnelle et organisation du modèle de données
+* **EDOH BEDI Komi Godwin**
+* **SEWONOU Pascal** 
