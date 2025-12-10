@@ -198,7 +198,7 @@ void modifier_type_emplacement(void) {
   int trouve = 0;
   const char *nom_fichier_temp = "temp_types_emplacement.txt";
 
-  printf("\n=== MODIFICATION D'UN TYPE D'EMPLACEMENT ===\n");
+  printf("\n== MODIFICATION D'UN TYPE D'EMPLACEMENT ==\n");
   printf("Numero du type d'emplacement a modifier : ");
   scanf("%d", &numero_recherche);
 
@@ -265,7 +265,7 @@ void supprimer_type_emplacement(void) {
   int trouve = 0;
   const char *nom_fichier_temp = "temp_types_emplacement.txt";
 
-  printf("\n=== SUPPRESSION D'UN TYPE D'EMPLACEMENT ===\n");
+  printf("\n== SUPPRESSION D'UN TYPE D'EMPLACEMENT ==\n");
   printf("Numero du type d'emplacement a supprimer : ");
   scanf("%d", &numero_recherche);
 

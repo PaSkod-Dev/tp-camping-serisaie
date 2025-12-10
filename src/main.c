@@ -4,7 +4,7 @@
  */
 
 #include <stdio.h>
-#include "types_emplacement.h"
+#include "include/types_emplacement.h"
 
 int main(void) {
     int choix;
