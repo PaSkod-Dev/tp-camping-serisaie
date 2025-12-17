@@ -101,7 +101,7 @@ void ajouter_type_emplacement(void) {
   FILE *fichier;
   TypeEmplacement nouveau_type;
 
-  printf("\n=== AJOUT D'UN TYPE D'EMPLACEMENT ===\n");
+  printf("\n== AJOUT D'UN TYPE D'EMPLACEMENT ==\n");
 
   nouveau_type.numero_type = trouver_prochain_numero();
   printf("Numero de type : %d\n", nouveau_type.numero_type);
@@ -142,7 +142,7 @@ void consulter_type_emplacement(void) {
   int numero_recherche;
   int trouve = 0;
 
-  printf("\n=== CONSULTATION D'UN TYPE D'EMPLACEMENT ===\n");
+  printf("\n== CONSULTATION D'UN TYPE D'EMPLACEMENT ==\n");
   printf("Numero du type d'emplacement a consulter : ");
   scanf("%d", &numero_recherche);
 
@@ -172,7 +172,7 @@ void lister_types_emplacement(void) {
   TypeEmplacement type;
   int nombre_types = 0;
 
-  printf("\n=== LISTE DES TYPES D'EMPLACEMENT ===\n\n");
+  printf("\n== LISTE DES TYPES D'EMPLACEMENT ==\n\n");
 
   fichier = ouvrir_fichier_lecture(NOM_FICHIER);
   if (fichier == NULL) {
@@ -186,6 +186,7 @@ void lister_types_emplacement(void) {
   }
 
   printf("\nTotal : %d type(s) d'emplacement.\n", nombre_types);
+  
 
   fermer_fichier(fichier);
 }
