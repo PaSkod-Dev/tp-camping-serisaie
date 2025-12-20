@@ -1,5 +1,4 @@
 /*
-/*  
     NAME : types_emplacement.c
     PURPOSE : Implémentation des fonctions de gestion des types d'emplacement en utilisant un fichier séquentiel texte.
     AUTHORS : SEWONOU Pascal & EDOH BEDI Komi Godwin
@@ -14,7 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* FONCTIONS DE GESTION DES FICHIERS */
+// FONCTIONS DE GESTION DES FICHIERS
 
 FILE *ouvrir_fichier_lecture(const char *nom_fichier) {
   FILE *fichier = fopen(nom_fichier, "r");
