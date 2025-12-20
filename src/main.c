@@ -1,7 +1,11 @@
 /*
- * Programme principal - Gestion des types d'emplacement
- * Camping "La Cerisaie"
+    NAME : Camping "La Cerisaie"
+    PURPOSE : Programme principal - Gestion des types d'emplacement
+    AUTHORS : SEWONOU Pascal & EDOH BEDI Komi Godwin
+    CREATED : 09/12/2025
+    UPDATED : 19/12/2025
  */
+
 
 #include <stdio.h>
 #include "include/types_emplacement.h"

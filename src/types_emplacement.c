@@ -1,9 +1,13 @@
 /*
- * Gestion des Types d'Emplacement - Camping "La Cerisaie"
- *
- * Implémentation des fonctions de gestion des types d'emplacement
- * en utilisant un fichier séquentiel texte.
+/*  
+    NAME : types_emplacement.c
+    PURPOSE : Implémentation des fonctions de gestion des types d'emplacement en utilisant un fichier séquentiel texte.
+    AUTHORS : SEWONOU Pascal & EDOH BEDI Komi Godwin
+    CREATED : 09/12/2025
+    UPDATED : 19/12/2025
  */
+
+
 
 #include "types_emplacement.h"
 #include <stdio.h>
