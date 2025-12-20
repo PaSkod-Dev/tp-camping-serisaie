@@ -13,158 +13,158 @@
  //FONCTIONS DE GESTION DES FICHIERS
  
  /*---------------------------------------------------------
-  * Fonction : ouvrir_fichier_lecture
+  * Fonction : fopen_r
   * But      : Ouvre un fichier en mode lecture
-  * Entree   : nom_fichier - chemin du fichier a ouvrir
+  * Entree   : filename- chemin du fichier a ouvrir
   * Sortie   : Pointeur vers le fichier ouvert, NULL si echec
   *----------------------------------------------------------*/
- FILE *ouvrir_fichier_lecture(const char *nom_fichier) {
-     FILE *fichier = fopen(nom_fichier, "r");
+ FILE *fopen_r(const char *filename) {
+     FILE *fichier = fopen(filename, "r");
      if (fichier == NULL) {
-         printf("Le fichier %s n'existe pas encore.\n", nom_fichier);
+         printf("Le fichier %s n'existe pas encore.\n", filename);
      }
      return fichier;
  }
- /* Fin ouvrir_fichier_lecture */
+ /* Fin fopen_r */
  
  /*---------------------------------------------------------
-  * Fonction : ouvrir_fichier_ajout
+  * Fonction : fopen_a
   * But      : Ouvre un fichier en mode ajout (append)
-  * Entree   : nom_fichier - chemin du fichier a ouvrir
+  * Entree   : filename- chemin du fichier a ouvrir
   * Sortie   : Pointeur vers le fichier ouvert, NULL si echec
   *----------------------------------------------------------*/
- FILE *ouvrir_fichier_ajout(const char *nom_fichier) {
-     FILE *fichier = fopen(nom_fichier, "a");
+ FILE *fopen_a(const char *filename) {
+     FILE *fichier = fopen(filename, "a");
      if (fichier == NULL) {
          printf("Erreur : impossible d'ouvrir le fichier %s en mode ajout.\n",
-                nom_fichier);
+                filename);
      }
      return fichier;
  }
- /* Fin ouvrir_fichier_ajout */
+ /* Fin fopen_a */
  
  /*----------------------------------------------------------------
-  * Fonction : ouvrir_fichier_ecriture
+  * Fonction : fopen_w
   * But      : Ouvre un fichier en mode ecriture (ecrase le contenu)
-  * Entree   : nom_fichier - chemin du fichier a ouvrir
+  * Entree   : filename- chemin du fichier a ouvrir
   * Sortie   : Pointeur vers le fichier ouvert, NULL si echec
   *-----------------------------------------------------------------*/
- FILE *ouvrir_fichier_ecriture(const char *nom_fichier) {
-     FILE *fichier = fopen(nom_fichier, "w");
+ FILE *fopen_w(const char *filename) {
+     FILE *fichier = fopen(filename, "w");
      if (fichier == NULL) {
          printf("Erreur : impossible d'ouvrir le fichier %s en mode ecriture.\n",
-                nom_fichier);
+                filename);
      }
      return fichier;
  }
- /* Fin ouvrir_fichier_ecriture */
+ /* Fin fopen_w */
  
  /*-------------------------------------------------------
-  * Fonction : fermer_fichier
+  * Fonction : fclose_f
   * But      : Ferme un fichier prealablement ouvert
   * Entree   : fichier - pointeur vers le fichier a fermer
   * Sortie   : Aucune
   *-------------------------------------------------------*/
- void fermer_fichier(FILE *fichier) {
+ void fclose_f(FILE *fichier) {
      if (fichier != NULL) {
          fclose(fichier);
      }
  }
- /* Fin fermer_fichier */
+ /* Fin fclose_f */
  
  //FONCTIONS DE LECTURE / ECRITURE DANS LE FICHIER
  
  /*----------------------------------------------------------------
-  * Fonction : lire_type_emplacement
+  * Fonction : read_type
   * But      : Lit un type d'emplacement depuis un fichier texte
   * Entree   : fichier - pointeur vers le fichier ouvert en lecture
   *            type    - pointeur vers la structure a remplir
   * Sortie   : 1 si lecture reussie, 0 sinon
   *-----------------------------------------------------------------*/
- int lire_type_emplacement(FILE *fichier, TypeEmplacement *type) {
+ int read_type(FILE *fichier, SlotType *type) {
      int resultat = fscanf(fichier, "%d %49s %f", 
                            &type->numero_type,
                            type->nom, 
                            &type->prix_jour_personne);
      return (resultat == 3);
  }
- /* Fin lire_type_emplacement */
+ /* Fin read_type */
  
  /*----------------------------------------------------------------
-  * Fonction : ecrire_type_emplacement
+  * Fonction : write_type
   * But      : Ecrit un type d'emplacement dans un fichier texte
   * Entree   : fichier - pointeur vers le fichier ouvert en ecriture
   *            type    - pointeur vers la structure a ecrire
   * Sortie   : 1 si ecriture reussie, 0 sinon
   *----------------------------------------------------------------*/
- int ecrire_type_emplacement(FILE *fichier, const TypeEmplacement *type) {
+ int write_type(FILE *fichier, const SlotType *type) {
      int resultat = fprintf(fichier, "%d %s %.2f\n", 
                             type->numero_type, 
                             type->nom,
                             type->prix_jour_personne);
      return (resultat > 0);
  }
- /* Fin ecrire_type_emplacement */
+ /* Fin write_type */
  
  //FONCTIONS METIER SUR LES TYPES D'EMPLACEMENT
  
  /*---------------------------------------------------------------------------
-  * Fonction : trouver_prochain_numero
+  * Fonction : next_id
   * But      : Trouve le prochain numero disponible pour un type d'emplacement
   * Entree   : Aucune
   * Sortie   : Prochain numero disponible (max + 1)
   *----------------------------------------------------------------------------*/
- int trouver_prochain_numero(void) {
+ int next_id(void) {
      FILE *fichier;
-     TypeEmplacement type;
+     SlotType type;
      int numero_max = 0;
      int prochain_numero = 1;
  
-     fichier = ouvrir_fichier_lecture(NOM_FICHIER);
+     fichier = fopen_r(FILE_NAME);
      
      if (fichier != NULL) {
-         while (lire_type_emplacement(fichier, &type)) {
+         while (read_type(fichier, &type)) {
              if (type.numero_type > numero_max) {
                  numero_max = type.numero_type;
              }
          }
-         fermer_fichier(fichier);
+         fclose_f(fichier);
          prochain_numero = numero_max + 1;
      }
  
      return prochain_numero;
  }
- /* Fin trouver_prochain_numero */
+ /* Fin next_id */
  
  /*-------------------------------------------------------------
-  * Fonction : afficher_type_emplacement
+  * Fonction : show_type
   * But      : Affiche les informations d'un type d'emplacement
   * Entree   : type - pointeur vers la structure a afficher
   * Sortie   : Aucune
   *-------------------------------------------------------------*/
- static void afficher_type_emplacement(const TypeEmplacement *type) {
+ static void show_type(const SlotType *type) {
      printf("\n- Type d'emplacement numero %d -\n", type->numero_type);
      printf("Nom : %s\n", type->nom);
      printf("Prix par jour et par personne : %.2f euros\n",
             type->prix_jour_personne);
      printf("------------------------------------\n");
  }
- /* Fin afficher_type_emplacement */
+ /* Fin show_type */
  
  /*-------------------------------------------------------------------
-  * Fonction : ajouter_type_emplacement
+  * Fonction : add_type
   * But      : Ajoute un nouveau type d'emplacement dans le fichier
   * Entree   : Aucune (saisie interactive)
   * Sortie   : Aucune
   *-------------------------------------------------------------------*/
- void ajouter_type_emplacement(void) {
+ void add_type(void) {
      FILE *fichier;
-     TypeEmplacement nouveau_type;
+     SlotType nouveau_type;
      int succes = 0;
  
      printf("\n== AJOUT D'UN TYPE D'EMPLACEMENT ==\n");
  
-     nouveau_type.numero_type = trouver_prochain_numero();
+     nouveau_type.numero_type = next_id();
      printf("Numero de type : %d\n", nouveau_type.numero_type);
  
      printf("Nom du type d'emplacement : ");
@@ -173,11 +173,11 @@
      printf("Prix par jour et par personne (en euros) : ");
      scanf("%f", &nouveau_type.prix_jour_personne);
  
-     fichier = ouvrir_fichier_ajout(NOM_FICHIER);
+     fichier = fopen_a(FILE_NAME);
      
      if (fichier != NULL) {
-         succes = ecrire_type_emplacement(fichier, &nouveau_type);
-         fermer_fichier(fichier);
+         succes = write_type(fichier, &nouveau_type);
+         fclose_f(fichier);
          
          if (succes) {
              printf("\nType d'emplacement ajoute avec succes !\n");
@@ -188,17 +188,17 @@
          printf("Erreur : impossible d'ajouter le type d'emplacement.\n");
      }
  }
- /* Fin ajouter_type_emplacement */
+ /* Fin add_type */
  
  /*---------------------------------------------------------------------
-  * Fonction : consulter_type_emplacement
+  * Fonction : get_type
   * But      : Recherche et affiche un type d'emplacement par son numero
   * Entree   : Aucune (saisie interactive)
   * Sortie   : Aucune
   *----------------------------------------------------------------------*/
- void consulter_type_emplacement(void) {
+ void get_type(void) {
      FILE *fichier;
-     TypeEmplacement type;
+     SlotType type;
      int numero_recherche;
      int trouve = 0;
  
@@ -206,16 +206,16 @@
      printf("Numero du type d'emplacement a consulter : ");
      scanf("%d", &numero_recherche);
  
-     fichier = ouvrir_fichier_lecture(NOM_FICHIER);
+     fichier = fopen_r(FILE_NAME);
      
      if (fichier != NULL) {
-         while (lire_type_emplacement(fichier, &type) && !trouve) {
+         while (read_type(fichier, &type) && !trouve) {
              if (type.numero_type == numero_recherche) {
-                 afficher_type_emplacement(&type);
+                 show_type(&type);
                  trouve = 1;
              }
          }
-         fermer_fichier(fichier);
+         fclose_f(fichier);
          
          if (!trouve) {
              printf("Type d'emplacement numero %d introuvable.\n", numero_recherche);
@@ -224,70 +224,70 @@
          printf("Aucun type d'emplacement enregistre.\n");
      }
  }
- /* Fin consulter_type_emplacement */
+ /* Fin get_type */
  
  /*------------------------------------------------------------
-  * Fonction : lister_types_emplacement
+  * Fonction : list_types
   * But      : Affiche tous les types d'emplacement enregistres
   * Entree   : Aucune
   * Sortie   : Aucune 
   *------------------------------------------------------------*/
- void lister_types_emplacement(void) {
+ void list_types(void) {
      FILE *fichier;
-     TypeEmplacement type;
+     SlotType type;
      int nombre_types = 0;
  
      printf("\n== LISTE DES TYPES D'EMPLACEMENT ==\n\n");
  
-     fichier = ouvrir_fichier_lecture(NOM_FICHIER);
+     fichier = fopen_r(FILE_NAME);
      
      if (fichier != NULL) {
-         while (lire_type_emplacement(fichier, &type)) {
-             afficher_type_emplacement(&type);
+         while (read_type(fichier, &type)) {
+             show_type(&type);
              nombre_types++;
          }
          printf("\nTotal : %d type(s) d'emplacement.\n", nombre_types);
-         fermer_fichier(fichier);
+         fclose_f(fichier);
      } else {
          printf("Aucun type d'emplacement enregistre.\n");
      }
  }
- /* Fin lister_types_emplacement */
+ /* Fin list_types */
  
  /*--------------------------------------------------------------
-  * Fonction : modifier_type_emplacement
+  * Fonction : edit_type
   * But      : Modifie un type d'emplacement existant
   * Entree   : Aucune (saisie interactive)
   * Sortie   : Aucune
   * Methode  : Utilise un fichier temporaire pour la reecriture
   *-------------------------------------------------------------*/
- void modifier_type_emplacement(void) {
+ void edit_type(void) {
      FILE *fichier_lecture;
      FILE *fichier_ecriture;
-     TypeEmplacement type;
+     SlotType type;
      int numero_recherche;
      int trouve = 0;
      int fichiers_ouverts = 0;
-     const char *nom_fichier_temp = "temp_types_emplacement.txt";
+     const char *filename_temp = "temp_types_emplacement.txt";
  
      printf("\n== MODIFICATION D'UN TYPE D'EMPLACEMENT ==\n");
      printf("Numero du type d'emplacement a modifier : ");
      scanf("%d", &numero_recherche);
  
-     fichier_lecture = ouvrir_fichier_lecture(NOM_FICHIER);
+     fichier_lecture = fopen_r(FILE_NAME);
      
      if (fichier_lecture != NULL) {
-         fichier_ecriture = ouvrir_fichier_ecriture(nom_fichier_temp);
+         fichier_ecriture = fopen_w(filename_temp);
          
          if (fichier_ecriture != NULL) {
              fichiers_ouverts = 1;
              
-             while (lire_type_emplacement(fichier_lecture, &type)) {
+             while (read_type(fichier_lecture, &type)) {
                  if (type.numero_type == numero_recherche) {
                      trouve = 1;
  
                      printf("\nAnciennes informations :\n");
-                     afficher_type_emplacement(&type);
+                     show_type(&type);
  
                      printf("\nNouvelles informations :\n");
                      printf("Nom du type d'emplacement (actuel : %s) : ", type.nom);
@@ -297,15 +297,15 @@
                             type.prix_jour_personne);
                      scanf("%f", &type.prix_jour_personne);
                  }
-                 ecrire_type_emplacement(fichier_ecriture, &type);
+                 write_type(fichier_ecriture, &type);
              }
              
-             fermer_fichier(fichier_ecriture);
+             fclose_f(fichier_ecriture);
          } else {
              printf("Erreur : impossible de creer le fichier temporaire.\n");
          }
          
-         fermer_fichier(fichier_lecture);
+         fclose_f(fichier_lecture);
      } else {
          printf("Aucun type d'emplacement enregistre.\n");
      }
@@ -313,59 +313,59 @@
      if (fichiers_ouverts) {
          if (!trouve) {
              printf("Type d'emplacement numero %d introuvable.\n", numero_recherche);
-             remove(nom_fichier_temp);
+             remove(filename_temp);
          } else {
-             remove(NOM_FICHIER);
-             rename(nom_fichier_temp, NOM_FICHIER);
+             remove(FILE_NAME);
+             rename(filename_temp, FILE_NAME);
              printf("\nType d'emplacement modifie avec succes !\n");
          }
      }
  }
- /* Fin modifier_type_emplacement */
+ /* Fin edit_type */
  
  /*-------------------------------------------------------------
-  * Fonction : supprimer_type_emplacement
+  * Fonction : del_type
   * But      : Supprime un type d'emplacement du fichier
   * Entree   : Aucune (saisie interactive)
   * Sortie   : Aucune
   * Methode  : Utilise un fichier temporaire pour la reecriture
   *-------------------------------------------------------------*/
- void supprimer_type_emplacement(void) {
+ void del_type(void) {
      FILE *fichier_lecture;
      FILE *fichier_ecriture;
-     TypeEmplacement type;
+     SlotType type;
      int numero_recherche;
      int trouve = 0;
      int fichiers_ouverts = 0;
-     const char *nom_fichier_temp = "temp_types_emplacement.txt";
+     const char *filename_temp = "temp_types_emplacement.txt";
  
      printf("\n== SUPPRESSION D'UN TYPE D'EMPLACEMENT ==\n");
      printf("Numero du type d'emplacement a supprimer : ");
      scanf("%d", &numero_recherche);
  
-     fichier_lecture = ouvrir_fichier_lecture(NOM_FICHIER);
+     fichier_lecture = fopen_r(FILE_NAME);
      
      if (fichier_lecture != NULL) {
-         fichier_ecriture = ouvrir_fichier_ecriture(nom_fichier_temp);
+         fichier_ecriture = fopen_w(filename_temp);
          
          if (fichier_ecriture != NULL) {
              fichiers_ouverts = 1;
              
-             while (lire_type_emplacement(fichier_lecture, &type)) {
+             while (read_type(fichier_lecture, &type)) {
                  if (type.numero_type == numero_recherche) {
                      trouve = 1;
                      printf("\nType d'emplacement numero %d supprime.\n", numero_recherche);
                  } else {
-                     ecrire_type_emplacement(fichier_ecriture, &type);
+                     write_type(fichier_ecriture, &type);
                  }
              }
              
-             fermer_fichier(fichier_ecriture);
+             fclose_f(fichier_ecriture);
          } else {
              printf("Erreur : impossible de creer le fichier temporaire.\n");
          }
          
-         fermer_fichier(fichier_lecture);
+         fclose_f(fichier_lecture);
      } else {
          printf("Aucun type d'emplacement enregistre.\n");
      }
@@ -373,10 +373,10 @@
      if (fichiers_ouverts) {
          if (!trouve) {
              printf("Type d'emplacement numero %d introuvable.\n", numero_recherche);
-             remove(nom_fichier_temp);
+             remove(filename_temp);
          } else {
-             remove(NOM_FICHIER);
-             rename(nom_fichier_temp, NOM_FICHIER);
+             remove(FILE_NAME);
+             rename(filename_temp, FILE_NAME);
              printf("Suppression terminee avec succes !\n");
          }
      }

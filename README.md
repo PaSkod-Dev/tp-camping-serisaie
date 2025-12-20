@@ -64,7 +64,7 @@ Menu principal :
 tp-camping-serisaie/
 ├── src/
 │   ├── include/
-│   │   └── types_emplacement.h     # Déclarations et structure TypeEmplacement
+│   │   └── types_emplacement.h     # Déclarations et structure SlotType
 │   ├── main.c                      # Programme principal avec menu interactif
 │   └── types_emplacement.c         # Implémentation des fonctions métier
 ├── Makefile                        # Script de compilation
@@ -94,7 +94,7 @@ Exemple de contenu :
 
 Le projet adopte une architecture modulaire organisée en trois couches :
 
-**Structure de données** : `TypeEmplacement` composée des champs `numero_type`, `nom` et `prix_jour_personne`.
+**Structure de données** : `SlotType` composée des champs `numero_type`, `nom` et `prix_jour_personne`.
 
 **Couche d'accès aux fichiers** : Fonctions d'ouverture, fermeture, lecture et écriture du fichier séquentiel.
 

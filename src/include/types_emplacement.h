@@ -14,13 +14,13 @@
  
  //CONSTANTES
  
- #define NOM_FICHIER "types_emplacement.txt"
- #define TAILLE_NOM 50
+ #define FILE_NAME "types_emplacement.txt"
+ #define NAME_LEN 50
  
  //STRUCTURES
  
  /*------------------------------------------------------------------------
-  * Structure : TypeEmplacement
+  * Structure : SlotType
   * But       : Represente un type d'emplacement dans le camping
   * Champs    : numero_type       - Numero unique du type
   *             nom               - Nom du type (Tente, Caravane, etc.)
@@ -28,30 +28,30 @@
   *-------------------------------------------------------------------------*/
  typedef struct {
      int numero_type;
-     char nom[TAILLE_NOM];
+     char nom[NAME_LEN];
      float prix_jour_personne;
- } TypeEmplacement;
+ } SlotType;
  
  //PROTOTYPES DES FONCTIONS DE GESTION DE FICHIER
  
- FILE *ouvrir_fichier_lecture(const char *nom_fichier);
- FILE *ouvrir_fichier_ajout(const char *nom_fichier);
- FILE *ouvrir_fichier_ecriture(const char *nom_fichier);
- void fermer_fichier(FILE *fichier);
+ FILE *fopen_r(const char *fiename);
+ FILE *fopen_a(const char *filename);
+ FILE *fopen_w(const char *filename);
+ void fclose_f(FILE *fichier);
  
  //PROTOTYPES DES FONCTIONS DE LECTURE / ECRITURE
  
- int lire_type_emplacement(FILE *fichier, TypeEmplacement *type);
- int ecrire_type_emplacement(FILE *fichier, const TypeEmplacement *type);
+ int read_type(FILE *fichier, SlotType *type);
+ int write_type(FILE *fichier, const SlotType *type);
  
  //PROTOTYPES DES FONCTIONS METIER
  
- int  trouver_prochain_numero(void);
- void ajouter_type_emplacement(void);
- void consulter_type_emplacement(void);
- void lister_types_emplacement(void);
- void modifier_type_emplacement(void);
- void supprimer_type_emplacement(void);
+ int  next_id(void);
+ void add_type(void);
+ void get_type(void);
+ void list_types(void);
+ void edit_type(void);
+ void del_type(void);
  
  #endif /* TYPES_EMPLACEMENT_H */
  

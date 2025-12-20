@@ -11,26 +11,26 @@
 #include "types_emplacement.h"
  
  /*----------------------------------------------------------------------
-  * Fonction : vider_buffer
+  * Fonction : flush_in
   * But      : Vide le buffer d'entree standard apres une saisie invalide
   * Entree   : Aucune
   * Sortie   : Aucune
   *-----------------------------------------------------------------------*/
- static void vider_buffer(void) {
+ static void flush_in(void) {
      int c;
      while ((c = getchar()) != '\n' && c != EOF) {
          /* Consomme les caracteres restants */
      }
  }
- /* Fin vider_buffer */
+ /* Fin flush_in */
  
  /*-------------------------------------------------
-  * Fonction : afficher_menu
+  * Fonction : show_menu
   * But      : Affiche le menu principal du programme
   * Entree   : Aucune
   * Sortie   : Aucune
   *-------------------------------------------------*/
- static void afficher_menu(void) {
+ static void show_menu(void) {
      printf("\nMenu principal :\n");
      printf("1 - Ajouter un type d'emplacement\n");
      printf("2 - Modifier un type d'emplacement\n");
@@ -40,51 +40,51 @@
      printf("0 - Quitter\n");
      printf("\nVotre choix : ");
  }
- /* Fin afficher_menu */
+ /* Fin show_menu */
  
  /*------------------------------------------------------
-  * Fonction : lire_choix
+  * Fonction : get_choice
   * But      : Lit et valide le choix de l'utilisateur
   * Entree   : Aucune
   * Sortie   : Le choix de l'utilisateur (-1 si invalide)
   *------------------------------------------------------*/
- static int lire_choix(void) {
+ static int get_choice(void) {
      int choix;
      int resultat;
      
      resultat = scanf("%d", &choix);
      
      if (resultat != 1) {
-         vider_buffer();
+         flush_in();
          choix = -1;
      }
      
      return choix;
  }
- /* Fin lire_choix */
+ /* Fin get_choice */
  
  /*--------------------------------------------------------------------
-  * Fonction : traiter_choix
+  * Fonction : do_choice
   * But      : Execute l'action correspondant au choix de l'utilisateur
   * Entree   : choix - numero de l'action a executer
   * Sortie   : Aucune
   *--------------------------------------------------------------------*/
- static void traiter_choix(int choix) {
+ static void do_choice(int choix) {
      switch (choix) {
          case 1:
-             ajouter_type_emplacement();
+             add_type();
              break;
          case 2:
-             modifier_type_emplacement();
+             edit_type();
              break;
          case 3:
-             supprimer_type_emplacement();
+             del_type();
              break;
          case 4:
-             consulter_type_emplacement();
+             get_type();
              break;
          case 5:
-             lister_types_emplacement();
+             list_types();
              break;
          case 0:
              printf("\nAu revoir !\n");
@@ -94,7 +94,7 @@
              break;
      }
  }
- /* Fin traiter_choix */
+ /* Fin do_choice */
  
  /*-------------------------------------------------------------------
   * Fonction : main
@@ -112,9 +112,9 @@
      printf("   -------------------------------\n");
  
      do {
-         afficher_menu();
-         choix = lire_choix();
-         traiter_choix(choix);
+         show_menu();
+         choix = get_choice();
+         do_choice(choix);
      } while (choix != 0);
  
      return 0;
