@@ -1,3 +1,12 @@
+/*
+    NAME : Camping "La Cerisaie"
+    PURPOSE : Déclaration de la structure et des fonctions de gestions.
+    AUTHORS : SEWONOU Pascal & EDOH BEDI Komi Godwin
+    CREATED : 09/12/2025
+    UPDATED : 19/12/2025
+ */
+
+
 #ifndef TYPES_EMPLACEMENT_H
 #define TYPES_EMPLACEMENT_H
 
