@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* FONCTIONS DE GESTION DES FICHIERS                                          */
+/* FONCTIONS DE GESTION DES FICHIERS */
 
 FILE *ouvrir_fichier_lecture(const char *nom_fichier) {
   FILE *fichier = fopen(nom_fichier, "r");
@@ -45,7 +45,7 @@ void fermer_fichier(FILE *fichier) {
   }
 }
 
-/* LECTURE / ECRITURE DANS LE FICHIER                                         */
+/* LECTURE / ECRITURE DANS LE FICHIER */
 
 int lire_type_emplacement(FILE *fichier, TypeEmplacement *type) {
   /* Format : numero nom prix surface capacite description\n */
@@ -64,7 +64,7 @@ int ecrire_type_emplacement(FILE *fichier, const TypeEmplacement *type) {
   return (resultat > 0);
 }
 
-/* FONCTIONS METIER SUR LES TYPES D'EMPLACEMENT                               */
+/* FONCTIONS METIER SUR LES TYPES D'EMPLACEMENT */
 
 int trouver_prochain_numero(void) {
   FILE *fichier;
