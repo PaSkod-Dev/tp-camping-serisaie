@@ -13,6 +13,10 @@ cerisaie_types_emplacement
 /bin/
 /dist/
 
+# Fichiers de données générés par l'application
+types_emplacement.txt
+temp_types_emplacement.txt
+
 # Fichiers temporaires d'éditeur
 *.swp
 *.swo

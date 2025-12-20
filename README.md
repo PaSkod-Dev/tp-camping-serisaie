@@ -1,45 +1,61 @@
-# TP C – Camping « La Cerisaie »
+# Camping « La Cerisaie » - Gestion des Types d'Emplacement
 
-Gestion des Types d’Emplacement**
+Application en C pour gérer les types d'emplacement du camping. Les données sont stockées dans un fichier texte séquentiel.
 
-Ce projet, développé en langage C dans le cadre du module de Génie Logiciel, implémente la gestion des **types d’emplacement** du camping *La Cerisaie*.
-Il s’agit d’une application modulaire permettant la création, la mise à jour et la consultation des données, conservées dans un **fichier séquentiel texte**.
+## Fonctionnalités
 
----
+- Ajouter, modifier, supprimer un type d'emplacement
+- Consulter un type par son numéro
+- Lister tous les types d'emplacement
 
-## **Objectif du TP**
+Chaque type contient : numéro, nom, prix/jour/personne, surface, capacité max, description.
 
+## Compilation
 
-Le travail porte spécifiquement sur :
-
-* La **mise à jour** des informations relatives aux *types d’emplacement* (ajout, modification, recherche, affichage).
-* La **gestion des données** dans un fichier texte séquentiel : `types_emplacement.txt`.
-* L’utilisation d’une **architecture modulaire** en trois composantes :
-
-  * fichier d’en-tête (`.h`),
-  * fichier d’implémentation (`.c`),
-  * fichier principal (`main.c`).
-
----
-
-## **Structure du projet**
-
-```text
-src/
-  main.c                 # Programme principal (menu principal et interactions)
-  types_emplacement.c    # Implémentation des fonctions et procédures métier
-
-include/
-  types_emplacement.h    # Structure TypeEmplacement, prototypes des fonctions
-
-types_emplacement.txt    # Fichier séquentiel contenant les données (créé/MAJ à l’exécution)
-
-Makefile                 # Compilation automatisée du projet
+```bash
+make
 ```
 
----
+L'exécutable `cerisaie_types_emplacement.exe` sera créé.
 
-## **Auteurs**
+Pour nettoyer : `make clean`
 
-* **EDOH BEDI Komi Godwin**
-* **SEWONOU Pascal** 
+## Utilisation
+
+```bash
+./cerisaie_types_emplacement.exe
+```
+
+Menu interactif avec les options 1-5 pour les opérations CRUD, 0 pour quitter.
+
+## Structure
+
+```
+src/
+  include/types_emplacement.h    # Déclarations
+  main.c                          # Menu principal
+  types_emplacement.c             # Implémentation
+```
+
+Les données sont dans `types_emplacement.txt` au format :
+```
+numero nom prix surface capacite description
+```
+
+## Prérequis
+
+- GCC (version 4.9+)
+- Make
+
+Pour Windows, voir [guide_compilation.md](guide_compilation.md).
+
+## Auteurs
+
+- EDOH BEDI Komi Godwin
+- SEWONOU Pascal
+
+**Dates** : 09/12/2025 - 19/12/2025
+
+## Licence
+
+MIT - Voir [LICENSE](LICENSE)
