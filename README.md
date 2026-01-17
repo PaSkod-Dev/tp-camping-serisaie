@@ -1,53 +1,73 @@
-# Camping « La Cerisaie » - Gestion des Types d'Emplacement
+<div align="center">
 
-Application console en langage C permettant de gérer les types d'emplacement d'un camping. Les données sont persistées dans un fichier texte séquentiel.
+# Camping « La Cerisaie »
+## Gestion des Types d'Emplacement
+
+[![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)]()
+[![GCC](https://img.shields.io/badge/GCC-4.9+-A42E2B?style=flat-square)]()
+[![Make](https://img.shields.io/badge/Make-GNU-427819?style=flat-square)]()
+[![Licence MIT](https://img.shields.io/badge/Licence-MIT-blue?style=flat-square)]()
+<!--  -->
+![Camping La Cerisaie](Modélisation/image/camping.jpeg)
+
+*Application console en langage C pour la gestion des types d'emplacement du camping Cerisaie avec persistance de données en fichier texte séquentiel.*
+
+</div>
+
+---
 
 ## Fonctionnalités
 
 L'application propose un menu interactif permettant de :
 
-- Ajouter un nouveau type d'emplacement
-- Modifier un type d'emplacement existant
-- Supprimer un type d'emplacement
-- Consulter un type d'emplacement par son numéro
-- Lister tous les types d'emplacement enregistrés
+-  **Ajouter** un nouveau type d'emplacement
+-  **Modifier** un type d'emplacement existant
+-  **Supprimer** un type d'emplacement
+-  **Consulter** un type d'emplacement par son numéro
+-  **Lister** tous les types d'emplacement enregistrés
 
-Chaque type d'emplacement est caractérisé par un numéro unique, un nom (Tente, Caravane, Camping-car, Bungalow, etc.) et un prix journalier par personne.
+**Caractéristiques d'un type d'emplacement :**
+- Numéro unique (identifiant)
+- Nom (Tente, Caravane, Camping-car, Bungalow, etc.)
+- Prix journalier par personne
 
-## Prérequis
+---
 
-- Compilateur GCC (version 4.9 ou supérieure)
-- GNU Make
-- Terminal compatible (Git Bash, MINGW64, Linux, macOS)
+##  Prérequis
 
-Pour les utilisateurs Windows, consultez le [guide de compilation](guide_compilation.md) pour l'installation de l'environnement.
+| Composant | Version minimale |
+|:----------|:-----------------|
+| **Compilateur GCC** | 4.9+ |
+| **GNU Make** | - |
+| **Terminal** | Git Bash, MINGW64, Linux, macOS |
 
-## Compilation
+>  **Windows** : Consultez le [guide de compilation](guide_compilation.md) pour l'installation de l'environnement.
 
-Compiler le projet :
+---
 
+##  Compilation
+
+**Compiler le projet :**
 ```bash
 make
 ```
-
 L'exécutable `cerisaie_types_emplacement.exe` sera généré à la racine du projet.
 
-Nettoyer les fichiers générés :
-
+**Nettoyer les fichiers générés :**
 ```bash
 make clean
 ```
 
-## Utilisation
+---
 
-Lancer l'application :
+##  Utilisation
 
+**Lancer l'application :**
 ```bash
 ./cerisaie_types_emplacement.exe
 ```
 
-Le menu principal s'affiche avec les options suivantes :
-
+**Menu principal affiché :**
 ```
 Menu principal :
 1 - Ajouter un type d'emplacement
@@ -58,31 +78,36 @@ Menu principal :
 0 - Quitter
 ```
 
-## Structure du projet
+---
+
+## 📁 Structure du projet
 
 ```
 tp-camping-serisaie/
+│
 ├── src/
 │   ├── include/
-│   │   └── types_emplacement.h     # Déclarations et structure SlotType
-│   ├── main.c                      # Programme principal avec menu interactif
-│   └── types_emplacement.c         # Implémentation des fonctions métier
-├── Makefile                        # Script de compilation
-├── README.md                       # Documentation du projet
-├── guide_compilation.md            # Guide d'installation pour Windows
-└── LICENSE                         # Licence du projet
+│   │   └── cerisaie_types_emplacement.h     # Déclarations et structure SlotType
+│   ├── main.c                                # Programme principal avec menu
+│   └── cerisaie_types_emplacement.c          # Implémentation CRUD
+│
+├── Makefile                                  # Script de compilation
+├── README.md                                 # Documentation du projet
+├── guide_compilation.md                      # Guide installation Windows
+└── LICENSE                                   # Licence du projet
 ```
 
-## Format des données
+---
 
-Les données sont stockées dans le fichier `types_emplacement.txt` au format texte :
+##  Format des données
+
+Les données sont stockées dans `cerisaie_types_emplacement.txt` au format :
 
 ```
 numero nom prix
 ```
 
-Exemple de contenu :
-
+**Exemple de contenu :**
 ```
 1 Tente 11.00
 2 Caravane 13.50
@@ -90,27 +115,46 @@ Exemple de contenu :
 4 Bungalow 25.00
 ```
 
-## Architecture technique
+---
 
-Le projet adopte une architecture modulaire organisée en trois couches :
+##  Architecture technique
 
-**Structure de données** : `SlotType` composée des champs `numero_type`, `nom` et `prix_jour_personne`.
+Le projet adopte une architecture modulaire en **trois couches** :
 
-**Couche d'accès aux fichiers** : Fonctions d'ouverture, fermeture, lecture et écriture du fichier séquentiel.
+<div align="center">
 
-**Couche métier** : Opérations CRUD (Create, Read, Update, Delete) sur les types d'emplacement.
+| Couche | Responsabilité |
+|:-------|:---------------|
+| **Structure de données** | `SlotType` (numero_type, nom, prix_jour_personne) |
+| **Accès aux fichiers** | Ouverture, fermeture, lecture, écriture séquentielle |
+| **Couche métier** | Opérations CRUD (Create, Read, Update, Delete) |
+
+</div>
 
 Chaque fonction est documentée selon les conventions académiques avec une cartouche décrivant son but, ses entrées et ses sorties.
 
-## Auteurs
+ Consultez l'[énoncé du projet](cerisaie_enonce.pdf) pour les spécifications détaillées.
 
-- EDOH BEDI Komi Godwin
-- SEWONOU Pascal
+---
 
-École Polytechnique de Lomé (EPL) - Licence Professionnelle Génie Logiciel
+## 👨‍💻 Auteurs
+
+**EDOH BEDI Komi Godwin** • **SEWONOU Pascal**
+
+*École Polytechnique de Lomé (EPL) - Licence Professionnelle Génie Logiciel*
 
 **Période de développement** : 09/12/2025 - 20/12/2025
 
-## Licence
+---
 
-Ce projet est distribué sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+##  Licence
+
+Ce projet est distribué sous **licence MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+<div align="center">
+
+*Développé avec **passion** et **détérmination** dans le cadre de notre formation en Génie Logiciel à l'EPL*
+
+</div>
