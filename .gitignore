@@ -1,29 +1,18 @@
-# Fichiers objets
+# Fichiers de compilation
+build/
 *.o
-*.obj
-
-# Exécutables
 *.exe
 *.out
-*.elf
-cerisaie_types_emplacement
 
-# Dossiers de build
-/build/
-/bin/
-/dist/
-
-# Fichiers de données générés par l'application
-types_emplacement.txt
-temp_types_emplacement.txt
-
-# Fichiers temporaires d'éditeur
-*.swp
-*.swo
-*~
+# Fichiers IDE
 .vscode/
 .idea/
+*.swp
 
-# Fichiers système
+# Données temporaires
+data/exports/factures/*.txt
+data/exports/factures/*.pdf
+
+# OS
 .DS_Store
 Thumbs.db

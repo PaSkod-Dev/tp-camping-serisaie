@@ -1,45 +1,42 @@
-
-# Makefile - Camping "La Cerisaie"
-# Gestion des types d'emplacement
-# AUTHORS : SEWONOU Pascal & EDOH BEDI Komi Godwin
-# CREATED : 09/12/2025
-# UPDATED : 20/12/2025
-
-# Configuration du compilateur
+# Variables
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -std=c99 -Isrc/include
+CFLAGS = -Wall -Wextra -Isrc
+OBJ_DIR = build/obj
+BIN_DIR = build/bin
 
-# Fichiers sources, objets et cible
-SRC = src/main.c src/types_emplacement.c
-OBJ = src/main.o src/types_emplacement.o
-TARGET = cerisaie_types_emplacement.exe
+# Fichiers source
+ENTITIES = src/entities/client/client.c \
+           src/entities/sejour/sejour.c \
+           src/entities/emplacement/emplacement.c \
+           src/entities/emplacement/types_emplacement.c \
+           src/entities/sport/sport.c \
+           src/entities/location_sport/location_sport.c
 
-# Regles de compilation
+SERVICES = src/services/facturation/facturation.c \
+           src/services/gestion_sejour/gestion_sejour.c \
+           src/services/gestion_location/gestion_location.c
 
-# Regle par defaut : compiler le programme
-all: $(TARGET)
+UTILS = src/utils/validation.c \
+        src/utils/date_utils.c
 
-# Compilation du programme (lien des objets)
-$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+UI = src/ui/menu.c \
+     src/ui/affichage.c
 
-# Compilation des fichiers objets
-src/main.o: src/main.c src/include/types_emplacement.h
-	$(CC) $(CFLAGS) -c src/main.c -o src/main.o
+SOURCES = $(ENTITIES) $(SERVICES) $(UTILS) $(UI) src/main.c
+OBJECTS = $(SOURCES:src/%.c=$(OBJ_DIR)/%.o)
 
-src/types_emplacement.o: src/types_emplacement.c src/include/types_emplacement.h
-	$(CC) $(CFLAGS) -c src/types_emplacement.c -o src/types_emplacement.o
+# Cible principale
+all: $(BIN_DIR)/camping
 
-# Nettoyage des fichiers generes
-# Compatible Git Bash (rm) et Windows CMD (del)
+$(BIN_DIR)/camping: $(OBJECTS)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(OBJECTS) -o $@
+
+$(OBJ_DIR)/%.o: src/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	-@rm -f $(TARGET) $(OBJ) 2>/dev/null || del /Q $(TARGET) src\*.o 2>nul || true
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-# Execution du programme
-run: $(TARGET)
-	./$(TARGET)
-
-# Regles speciales
-.PHONY: all clean run
-
-# FIN DU FICHIER Makefile
+.PHONY: all clean

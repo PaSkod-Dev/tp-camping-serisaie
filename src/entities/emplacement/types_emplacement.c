@@ -7,7 +7,7 @@
     UPDATED : 20/12/2025
  */
 
- #include "types_emplacement.h"
+ #include "entities/emplacement/types_emplacement.h"
  #include <stdio.h>
  
  //FONCTIONS DE GESTION DES FICHIERS
