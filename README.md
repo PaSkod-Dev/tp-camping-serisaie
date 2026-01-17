@@ -85,16 +85,89 @@ Menu principal :
 ```
 tp-camping-serisaie/
 │
-├── src/
-│   ├── include/
-│   │   └── cerisaie_types_emplacement.h     # Déclarations et structure SlotType
-│   ├── main.c                                # Programme principal avec menu
-│   └── cerisaie_types_emplacement.c          # Implémentation CRUD
+├── 📁 build/                           # Fichiers de compilation
+│   ├── bin/                            # Exécutables
+│   └── obj/                            # Fichiers objets (.o)
 │
-├── Makefile                                  # Script de compilation
-├── README.md                                 # Documentation du projet
-├── guide_compilation.md                      # Guide installation Windows
-└── LICENSE                                   # Licence du projet
+├── 📁 data/                            # Données
+│   ├── samples/                        # Données d'exemple
+│   │   └── types_emplacement.txt
+│   └── exports/                        # Fichiers générés
+│       └── factures/                   # Factures PDF/TXT
+│
+├── 📁 docs/                            # Documentation
+│   ├── modelisation/                   # Modélisation BDD
+│   │   ├── images/                     # Schémas MCD/MLD
+│   │   │   ├── camping.jpeg
+│   │   │   ├── mcd.png
+│   │   │   └── mld.png
+│   │   └── modelisation.md
+│   │
+│   ├── specifications/                 # Spécifications
+│   │   ├── pdf/
+│   │   │   ├── Analyse gestion location Cerisaie.pdf
+│   │   │   └── modelisation-camping-cerisaie_Vfinal.pdf
+│   │   └── modelisation.md
+│   │
+│   └── guides/                         # Guides techniques
+│       └── guide_compilation.md
+│
+├── 📁 src/                             # Code source
+│   │
+│   ├── entities/                       # Entités du domaine
+│   │   ├── client/
+│   │   │   ├── client.h
+│   │   │   └── client.c
+│   │   ├── sejour/
+│   │   │   ├── sejour.h
+│   │   │   └── sejour.c
+│   │   ├── emplacement/
+│   │   │   ├── emplacement.h
+│   │   │   ├── emplacement.c
+│   │   │   ├── types_emplacement.h
+│   │   │   └── types_emplacement.c
+│   │   ├── sport/
+│   │   │   ├── sport.h
+│   │   │   └── sport.c
+│   │   └── location_sport/
+│   │       ├── location_sport.h
+│   │       └── location_sport.c
+│   │
+│   ├── services/                       # Logique métier
+│   │   ├── facturation/
+│   │   │   ├── facturation.h
+│   │   │   └── facturation.c
+│   │   ├── gestion_sejour/
+│   │   │   ├── gestion_sejour.h
+│   │   │   └── gestion_sejour.c
+│   │   └── gestion_location/
+│   │       ├── gestion_location.h
+│   │       └── gestion_location.c
+│   │
+│   ├── utils/                          # Utilitaires
+│   │   ├── validation.h
+│   │   └── validation.c
+│   │
+│   ├── ui/                             # Interface utilisateur
+│   │   ├── menu.h
+│   │   ├── menu.c
+│   │   ├── affichage.h
+│   │   ├── affichage.c
+│   │   ├── saisie.h
+│   │   └── saisie.c
+│   │
+│   └── main.c                          # Point d'entrée
+│
+├── 📁 tests/                           # Tests unitaires
+│   ├── test_client.c
+│   ├── test_sejour.c
+│   ├── test_facturation.c
+│   └── test_location_sport.c
+│
+├── .gitignore                          # Exclusions Git
+├── LICENSE                             # Licence MIT
+├── Makefile                            # Script de compilation
+├── README.md                           # Ce fichier
 ```
 
 ---
