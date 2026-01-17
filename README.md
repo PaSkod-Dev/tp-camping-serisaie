@@ -8,8 +8,8 @@
 [![Make](https://img.shields.io/badge/Make-GNU-427819?style=flat-square)]()
 [![Licence MIT](https://img.shields.io/badge/Licence-MIT-blue?style=flat-square)]()
 <!--  -->
-![Camping La Cerisaie](Modélisation/image/camping.jpeg)
-
+![Camping La Cerisaie](docs\modelisation\images\camping.jpeg)
+<!--  -->
 *Application console en langage C pour la gestion des types d'emplacement du camping Cerisaie avec persistance de données en fichier texte séquentiel.*
 
 </div>
