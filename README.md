@@ -206,7 +206,7 @@ Le projet adopte une architecture modulaire en **trois couches** :
 
 Chaque fonction est documentée selon les conventions académiques avec une cartouche décrivant son but, ses entrées et ses sorties.
 
- Consultez l'[énoncé du projet](cerisaie_enonce.pdf) pour les spécifications détaillées.
+ Consultez l'[énoncé du projet](docs/specifications/pdf/Cerisaie_Enoncé.pdf) pour les spécifications détaillées.
 
 ---
 
