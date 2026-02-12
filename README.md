@@ -41,7 +41,7 @@ L'application propose un menu interactif permettant de :
 | **GNU Make** | - |
 | **Terminal** | Git Bash, MINGW64, Linux, macOS |
 
->  **Windows** : Consultez le [guide de compilation](guide_compilation.md) pour l'installation de l'environnement.
+>  **Windows** : Consultez le [guide de compilation](docs/guides/guide_compilation.md) pour l'installation de l'environnement.
 
 ---
 
